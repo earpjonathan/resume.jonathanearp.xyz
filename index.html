@@ -2,9 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Jonathan Earp — Resume</title>
-  <meta http-equiv="refresh" content="0; url=resume.pdf" />
+
+  <title>Jonathan Earp – Resume</title>
+
+  <meta name="description" content="Resume of Jonathan Earp – FPV pilot, robotics, research, and engineering projects." />
+
+  <!-- Open Graph (link previews) -->
+  <meta property="og:title" content="Jonathan Earp – Resume" />
+  <meta property="og:description" content="FPV pilot, robotics, research, and engineering projects." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://resume.jonathanearp.xyz" />
+
+  <!-- Optional: preview image -->
+  <!-- <meta property="og:image" content="https://resume.jonathanearp.xyz/preview.png" /> -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #0b0b0b;
+      color: #fff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      height: 100%;
+    }
+
+    .top-bar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      background: rgba(0, 0, 0, 0.9);
+      border-bottom: 1px solid #222;
+      z-index: 10;
+    }
+
+    .top-bar a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .pdf-wrapper {
+      position: absolute;
+      inset: 56px 0 0 0;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #000;
+    }
+  </style>
 </head>
 <body>
+
+  <div class="top-bar">
+    <a href="https://jonathanearp.xyz">← Back to jonathanearp.xyz</a>
+  </div>
+
+  <div class="pdf-wrapper">
+    <iframe src="resume.pdf"></iframe>
+  </div>
+
 </body>
 </html>
