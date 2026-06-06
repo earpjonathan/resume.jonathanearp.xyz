@@ -2,74 +2,197 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jonathan Earp — Résumé</title>
+  <meta name="description" content="Résumé of Jonathan Earp — UAS / robot builder, incoming mechanical engineering undergrad. FAA Part 107 pilot; research at LBNL and UPenn's Singh Center." />
 
-  <title>Jonathan Earp – Resume</title>
-
-  <meta name="description" content="Resume of Jonathan Earp – FPV pilot, robotics, research, and engineering projects." />
-
-  <!-- Open Graph (link previews) -->
-  <meta property="og:title" content="Jonathan Earp – Resume" />
-  <meta property="og:description" content="FPV pilot, robotics, research, and engineering projects." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Jonathan Earp — Résumé" />
+  <meta property="og:description" content="UAS / robot builder, incoming mechanical engineering undergrad. Research at LBNL and UPenn." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://resume.jonathanearp.xyz" />
+  <meta name="twitter:card" content="summary" />
 
-  <!-- Optional: preview image -->
-  <!-- <meta property="og:image" content="https://resume.jonathanearp.xyz/preview.png" /> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500&display=swap" rel="stylesheet">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #0b0b0b;
-      color: #fff;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      height: 100%;
-    }
-
-    .top-bar {
-      position: fixed;
-      inset: 0 0 auto 0;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      padding: 0 1rem;
-      background: rgba(0, 0, 0, 0.9);
-      border-bottom: 1px solid #222;
-      z-index: 10;
-    }
-
-    .top-bar a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 0.9rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .pdf-wrapper {
-      position: absolute;
-      inset: 56px 0 0 0;
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      background: #000;
-    }
-  </style>
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      try { d.dataset.theme = localStorage.getItem("theme") || "dark"; }
+      catch (e) { d.dataset.theme = "dark"; }
+    })();
+  </script>
 </head>
 <body>
 
-  <div class="top-bar">
-    <a href="https://jonathanearp.xyz">← Back to jonathanearp.xyz</a>
-  </div>
+  <div class="vlabel" aria-hidden="true">Résumé — MMXXVI</div>
 
-  <div class="pdf-wrapper">
-    <iframe src="resume.pdf"></iframe>
-  </div>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a href="https://jonathanearp.xyz" class="brand">Jonathan Earp <span class="brand__crumb">Résumé</span></a>
+      <nav class="topnav">
+        <a href="https://jonathanearp.xyz" class="topnav__link">Index ↗</a>
+        <a class="btn-ghost" href="resume.pdf" download>Download PDF ↓</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">
+          <span class="theme-toggle__dot"></span><span class="theme-toggle__label"></span>
+        </button>
+      </nav>
+    </div>
+  </header>
 
+  <main class="doc">
+
+    <!-- HEADER -->
+    <header class="cv-head">
+      <h1 class="cv-name">Jonathan Earp</h1>
+      <p class="cv-title">UAS / Robot Builder — Incoming Mechanical Engineering Undergrad</p>
+      <div class="cv-contact">
+        <span>Oakland, CA</span>
+        <a href="tel:+15107086377">(510) 708-6377</a>
+        <a href="mailto:jonathan.earp55@gmail.com">jonathan.earp55@gmail.com</a>
+        <a href="https://jonathanearp.xyz" target="_blank" rel="noopener">jonathanearp.xyz</a>
+      </div>
+      <div class="cv-actions">
+        <a class="btn-cork" href="resume.pdf" download>Download PDF<span>↓</span></a>
+        <span class="cv-tag">FAA Part 107 Remote Pilot</span>
+      </div>
+    </header>
+
+    <!-- SUMMARY -->
+    <section class="cv-summary">
+      <p>
+        FAA Part 107 remote pilot and hands-on UAS builder focused on integration, tuning, and
+        flight-test iteration — build, test, fix. Comfortable across Betaflight and ArduPilot stacks,
+        with strong hardware troubleshooting and data-driven iteration. Applied research experience at
+        Lawrence Berkeley National Lab and UPenn's Singh Center, building and testing real-world sensing
+        and prototype systems in lab and field-like conditions.
+      </p>
+    </section>
+
+    <div class="cv-grid">
+
+      <!-- MAIN COLUMN -->
+      <div class="cv-main">
+
+        <section>
+          <div class="shead"><span class="shead__no">01</span><span class="shead__title">Experience</span></div>
+
+          <article class="entry">
+            <div class="entry__head">
+              <h3 class="entry__role">Lawrence Berkeley National Laboratory <span>— Student Research Assistant</span></h3>
+              <span class="entry__meta">Berkeley, CA · Apr–Aug 2024</span>
+            </div>
+            <p class="entry__sub">Indoor air quality &amp; childhood asthma study</p>
+            <ul class="dlist">
+              <li>Built a stove-mounted camera + air-quality sensor suite to capture cooking activity and pollutant data in real homes.</li>
+              <li>Improved reliability across varied kitchens (lighting, layouts, ventilation) by iterating mounts, wiring, and capture workflows.</li>
+              <li>Created an AI-assisted labeling pipeline to pair images with sensor measurements for dataset creation and analysis.</li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry__head">
+              <h3 class="entry__role">UPenn — Singh Center for Nanotechnology <span>— ESAP Participant</span></h3>
+              <span class="entry__meta">Philadelphia, PA · Summer 2025</span>
+            </div>
+            <p class="entry__sub">Nanotechnology + fabrication, project-based engineering</p>
+            <ul class="dlist">
+              <li>Built an adaptive audio control device with Professor Gyuseok Kim, graduate TAs, and peers; iterated from prototype to demo.</li>
+              <li>Practiced research workflow: define requirements, test, document results, and present to technical mentors.</li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry__head">
+              <h3 class="entry__role">The Head-Royce School <span>— Technology Office Assistant</span></h3>
+              <span class="entry__meta">Oakland, CA · Jun 2023 – Present</span>
+            </div>
+            <p class="entry__sub">IT + hardware support</p>
+            <ul class="dlist">
+              <li>Troubleshot student and staff devices and peripherals; resolved hardware/software issues quickly and documented fixes.</li>
+              <li>Supported AV and classroom tech setups (displays, audio, connections) and gave on-the-spot help during events.</li>
+              <li>Practiced customer-focused debugging: reproduce, isolate root cause, and communicate clear next steps.</li>
+            </ul>
+          </article>
+        </section>
+
+        <section>
+          <div class="shead"><span class="shead__no">02</span><span class="shead__title">Projects</span></div>
+
+          <article class="entry">
+            <div class="entry__head">
+              <h3 class="entry__role">FPV / UAS Builds <span>— Personal Projects</span></h3>
+              <span class="entry__meta">Ongoing</span>
+            </div>
+            <ul class="dlist">
+              <li>Built and fly ~8 drones (45&nbsp;mm–5&nbsp;in) across Betaflight + ArduPilot; integrated powertrain, FC stack, and payloads.</li>
+              <li>Set up and calibrate GPS, compass, barometer, and IMUs; tune PIDs and iterate using flight behaviour and logs.</li>
+              <li>400+ flight hours across FPV and camera drones; maintain and improve builds over time through systematic troubleshooting.</li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry__head">
+              <h3 class="entry__role">Head-Royce VEX Robotics <span>— Captain</span></h3>
+              <span class="entry__meta">Oakland, CA</span>
+            </div>
+            <ul class="dlist">
+              <li>Designed and built mechanisms; partnered with programmers to tune performance using PID and iterative testing.</li>
+              <li>Led team execution during a workspace move with schedules, check-in procedures, and clearer roles.</li>
+              <li>Results: State Champion; VEX Worlds Division Finalist; 2× Excellence, 3× Build, 2× Amaze, 1× Design, 2× Tournament Champion.</li>
+            </ul>
+          </article>
+        </section>
+
+      </div>
+
+      <!-- SIDE COLUMN -->
+      <aside class="cv-side">
+
+        <section>
+          <div class="shead"><span class="shead__no">03</span><span class="shead__title">Education</span></div>
+          <div class="entry">
+            <h3 class="entry__role">The Head-Royce School</h3>
+            <span class="entry__meta">Oakland, CA · Expected 2026</span>
+            <p class="cv-gpa">GPA 3.80 unweighted · 4.38 weighted</p>
+            <p class="entry__muted">Honors Calculus, Honors Advanced Physics, Honors Advanced Chemistry, Honors Data Science</p>
+          </div>
+        </section>
+
+        <section>
+          <div class="shead"><span class="shead__no">04</span><span class="shead__title">Technical Skills</span></div>
+          <dl class="skills">
+            <div><dt>UAS / Avionics</dt><dd>Betaflight, ArduPilot; ExpressLRS; analog + DJI video; GPS / compass / barometer / IMU setup</dd></div>
+            <div><dt>Controls / Data</dt><dd>PID tuning; flight-log review; data-driven iteration and troubleshooting</dd></div>
+            <div><dt>Mechanical / CAD</dt><dd>Onshape, Fusion 360; 3D printing; CNC + laser cutting; shop tools (bandsaw, drill press)</dd></div>
+            <div><dt>Programming</dt><dd>Python (scripting + data), JavaScript / CSS; light web tools and dashboards</dd></div>
+          </dl>
+        </section>
+
+        <section>
+          <div class="shead"><span class="shead__no">05</span><span class="shead__title">Leadership</span></div>
+          <ul class="dlist">
+            <li><strong>Medical Advocacy — President.</strong> Led community-wide health efforts at a 1,000-student school; ran a blood drive (120 donors) and a hospital partnership.</li>
+            <li><strong>Boy Scouts — Senior Patrol Leader, Eagle Project.</strong> Built inclusive troop systems; taught a month-long elementary robotics class and left a reusable curriculum.</li>
+          </ul>
+        </section>
+
+      </aside>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <div class="topbar__inner foot__bar">
+      <span>© <span id="year">2026</span> Jonathan Earp</span>
+      <span><a class="tlink" href="https://jonathanearp.xyz">jonathanearp.xyz ↗</a></span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
