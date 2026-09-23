@@ -169,6 +169,10 @@ html[data-theme="light"] .theme-toggle__label::after { content: "Dark"; }
   .nav-toggle { display: flex; }
 }
 
+
+/* the tailoring hides things with [hidden]; don't let a display rule undo it */
+[hidden] { display: none !important; }
+
 /* ---- document layout ---- */
 .doc {
   width: 100%;
@@ -187,13 +191,43 @@ html[data-theme="light"] .theme-toggle__label::after { content: "Dark"; }
 }
 .cv-contact a { border-bottom: 1px solid transparent; transition: color var(--t-fast), border-color var(--t-fast); }
 .cv-contact a:hover { color: var(--fg); border-bottom-color: var(--accent); }
-.cv-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 24px; }
+.on-paper { display: none; }
+.cv-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 24px; }
 .cv-actions .btn-cork span { transition: transform var(--t-fast); }
 .cv-actions .btn-cork:hover span { transform: translateY(2px); }
 .cv-tag {
   font-size: var(--t-caption); text-transform: uppercase; color: var(--fg);
   border: 1px solid var(--accent); border-radius: 22.5px; padding: 6px 12px;
 }
+
+/* ---- focus picker ----
+   Needs the script to do anything, so without it the band isn't drawn and
+   the page is just the full résumé. */
+html:not(.js) .lens { display: none; }
+.lens { padding: clamp(22px, 3.5vw, 32px) 0; border-bottom: 1px dashed var(--line); }
+.lens__row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.lens__label {
+  font-size: var(--t-caption); text-transform: uppercase; letter-spacing: 0.02em; color: var(--accent);
+}
+.lens__opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.lens__opt {
+  background: transparent; color: var(--fg); border: 1px solid var(--line);
+  border-radius: 22.5px; padding: 8px 15px; font: inherit; font-size: 12px; text-transform: uppercase;
+  cursor: pointer; transition: border-color var(--t-base), background var(--t-base), color var(--t-base);
+}
+.lens__opt:hover { border-color: var(--accent); }
+.lens__opt[aria-pressed="true"] { background: var(--cork); color: var(--cream); border-color: var(--accent); }
+.lens__status {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 22px; margin-top: 16px;
+}
+.lens__note { color: var(--fg-soft); font-size: 13px; max-width: 64ch; }
+.lens__tools { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.lens__tool {
+  background: none; border: 0; border-bottom: 1px solid var(--accent); padding: 0 0 1px;
+  color: var(--fg); font: inherit; font-size: 12px; text-transform: uppercase; cursor: pointer;
+  transition: opacity var(--t-fast);
+}
+.lens__tool:hover { opacity: 0.7; }
 
 /* summary */
 .cv-summary { padding: clamp(28px, 4vw, 40px) 0; border-bottom: 1px dashed var(--line); }
@@ -215,33 +249,67 @@ html[data-theme="light"] .theme-toggle__label::after { content: "Dark"; }
   padding-bottom: 14px; border-bottom: 1px dashed var(--line); margin-bottom: 24px;
 }
 .shead__no { font-size: var(--t-caption); color: var(--accent); }
-.shead__title { font-size: var(--t-h-sm); font-weight: 500; text-transform: uppercase; }
+.shead__title { font-size: var(--t-h-sm); font-weight: 500; text-transform: uppercase; line-height: 1.2; }
 
 /* entries */
 .entry + .entry { margin-top: 28px; padding-top: 28px; border-top: 1px dashed var(--line); }
 .entry__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
 .entry__role { font-size: var(--t-sub); font-weight: 500; line-height: 1.25; }
 .entry__role span { color: var(--fg-soft); font-weight: 400; }
+.entry__name { border-bottom: 1px solid var(--line); transition: border-color var(--t-fast); }
+.entry__name:hover { border-bottom-color: var(--accent); }
 .entry__meta { font-size: var(--t-caption); text-transform: uppercase; color: var(--fg-soft); white-space: nowrap; }
 .entry__sub { font-size: var(--t-caption); text-transform: uppercase; color: var(--accent); margin-top: 4px; }
+/* a project's tech stack: its own line on screen, inline after the title on paper */
+.entry__stack {
+  flex-basis: 100%; margin-top: -2px;
+  font-size: var(--t-caption); text-transform: uppercase; color: var(--accent);
+}
+.entry__line { margin-top: 8px; font-weight: 500; }
 .entry__muted { color: var(--fg-soft); font-size: var(--t-body); margin-top: 6px; }
+.entry__links {
+  display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px;
+  font-size: var(--t-caption); text-transform: uppercase; letter-spacing: 0.02em;
+}
+.entry__more {
+  display: inline-block; margin-top: 6px; padding: 6px 0;
+  background: none; border: 0; color: var(--accent); font: inherit;
+  font-size: var(--t-caption); text-transform: uppercase; letter-spacing: 0.02em; cursor: pointer;
+  transition: color var(--t-fast);
+}
+.entry__more:hover { color: var(--fg); }
+
+/* an entry with nothing for the chosen focus: title only, at the bottom */
+.entry.is-folded .entry__role,
+.entry.is-folded .entry__sub,
+.entry.is-folded .entry__stack { color: var(--fg-soft); }
+.entry.is-folded .entry__name { border-bottom-color: transparent; }
+.entry.is-folded .entry__links { display: none; }
+.entry + .entry.is-folded { margin-top: 18px; padding-top: 18px; }
+.entry.is-folded .entry__more { margin-top: 2px; }
 
 .dlist { list-style: none; margin-top: 12px; }
 .dlist li { position: relative; padding-left: 18px; margin-bottom: 8px; line-height: 1.5; color: var(--fg); }
 .dlist li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
 .dlist strong { font-weight: 500; }
 
-/* education / skills */
-.cv-gpa { margin-top: 8px; font-weight: 500; }
+/* skills */
 .skills { display: grid; gap: 0; border-top: 1px dashed var(--line); }
 .skills > div { padding: 12px 0; border-bottom: 1px dashed var(--line); }
 .skills dt { font-size: var(--t-caption); text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
 .skills dd { font-size: var(--t-body); color: var(--fg); line-height: 1.45; }
+.chips { list-style: none; display: inline; }
+.chips li { display: inline; transition: color var(--t-base); }
+/* comma after, not before: the whitespace between the <li>s is the space */
+.chips li:not(:last-child)::after { content: ","; color: var(--fg-soft); }
+.chips li.is-dim { color: var(--fg-soft); }
 
 /* footer */
 .foot { border-top: 1px dashed var(--line); }
+/* padding-block, not the shorthand: .foot__bar is also .topbar__inner and
+   "padding: 20px 0" was zeroing its gutter, pinning the text to the edges */
 .foot__bar {
-  padding: 20px 0; font-size: var(--t-caption); text-transform: uppercase; color: var(--fg-soft);
+  padding-block: 20px; font-size: var(--t-caption); text-transform: uppercase; color: var(--fg-soft);
 }
 
 /* responsive */
@@ -249,14 +317,122 @@ html[data-theme="light"] .theme-toggle__label::after { content: "Dark"; }
   .cv-grid { grid-template-columns: 1fr; gap: 44px; }
   .vlabel { display: none; }
 }
+@media (max-width: 640px) {
+  /* 44px touch targets for the picker on phones */
+  .lens__opt { min-height: 44px; padding: 10px 16px; }
+  .lens__tool { padding: 12px 0 1px; }
+  .entry__more { padding: 13px 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lens__opt, .chips li { transition: none; }
+}
 
-/* print — clean ink-on-paper */
+/* ============================================================
+   PRINT — one US Letter page in the same plain layout as the
+   internship résumé. tools/build-pdfs.sh prints this for each
+   focus, so what's on paper is whatever the page is showing.
+   ============================================================ */
+@page { size: Letter; margin: 0.4in 0.5in; }
+/* A4 is narrower; 0.4in sides give it the same 7.5in measure as Letter */
+@page a4 { size: A4; margin: 0.42in 0.4in; }
 @media print {
-  :root { --bg: #fff; --fg: #111; --fg-soft: #555; --line: #bbb; --accent: #b03a10; --cork: #111; }
-  .topbar, .vlabel, .foot, .cv-actions, .theme-toggle { display: none !important; }
-  body { font-size: 11px; line-height: 1.4; }
+  :root, html[data-theme] {
+    --bg: #fff; --fg: #111; --cream: #111; --fg-soft: #111; --line: #111; --accent: #111; --cork: #fff;
+  }
+  html, body { background: #fff; }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 9.5pt; line-height: 1.25; color: #111; transition: none;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .topbar, .vlabel, .foot, .lens, .cv-title, .btn-cork,
+  .entry__links, .entry__more { display: none !important; }
+  /* the full PDF is the plain one-pager: no summary, and .print-trim bits
+     left out so it stays on one page. Tailored PDFs have room for both. */
+  html[data-lens="all"] .cv-summary,
+  html[data-lens="all"] .print-trim { display: none !important; }
+  /* versions for UK applications print on A4 (paper: "a4" in LENSES) */
+  html[data-paper="a4"] body { page: a4; }
+  .on-screen { display: none; }
+  .on-paper { display: inline; }
   .doc { max-width: none; padding: 0; }
-  .cv-name { font-size: 30px; }
-  .cv-grid { gap: 28px; padding: 14px 0; }
-  a { color: inherit; }
+
+  /* header: name, then contact on two centered lines, the second
+     starting at GitHub. The containers dissolve so the items can be
+     reordered around a forced line break. */
+  .cv-head {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    text-align: center; padding: 0; margin-bottom: 4pt; border: 0;
+  }
+  .cv-name {
+    flex-basis: 100%; font-size: 19pt; font-weight: 700; line-height: 1.1;
+    letter-spacing: 0.5pt; text-transform: uppercase;
+  }
+  .cv-contact, .cv-actions { display: contents; }
+  .cv-contact > *, .cv-tag {
+    order: 1; margin-top: 2pt; padding: 0; border: 0; border-radius: 0;
+    font-size: 9.5pt; text-transform: none; letter-spacing: 0; color: #111;
+  }
+  .cv-head::after { content: ""; flex-basis: 100%; order: 2; }
+  .cv-contact > .is-li, .cv-contact > .is-gh, .cv-tag { order: 3; }
+  .cv-contact > * + *::before, .cv-tag::before { content: "|"; color: #777; margin: 0 4.5pt; }
+  .cv-contact > .is-li::before { content: none; }
+
+  .cv-summary { padding: 0; margin-top: 5pt; border: 0; }
+  .cv-summary p { font-size: 9.5pt; line-height: 1.3; max-width: none; }
+
+  /* one column: Education, then the two main sections in the focus's
+     order, then Skills and Leadership */
+  .cv-grid { display: flex; flex-direction: column; gap: 0; padding: 0; }
+  .cv-main, .cv-side { display: contents; }
+  #education { order: 1; }
+  .cv-main > .cv-sec { order: 2; }
+  #skills { order: 3; }
+  #leadership { order: 4; }
+  .cv-main > section + section,
+  .cv-side > section + section { margin-top: 0; }
+
+  .shead { display: block; margin: 6pt 0 2.5pt; padding: 0 0 1pt; border-bottom: 0.8pt solid #111; break-after: avoid; }
+  .shead__no { display: none; }
+  .shead__title { font-size: 10.2pt; font-weight: 700; letter-spacing: 0.6pt; line-height: 1.25; }
+
+  .entry { break-inside: avoid; }
+  .entry + .entry,
+  .entry + .entry.is-folded { margin-top: 3.5pt; padding-top: 0; border: 0; }
+  .entry__head { flex-wrap: nowrap; gap: 0; }
+  .entry__role { order: 1; flex: 0 1 auto; font-size: 9.5pt; font-weight: 700; line-height: 1.25; }
+  .entry__stack {
+    order: 2; flex: 1 1 auto; margin: 0;
+    font-size: 9.5pt; font-style: italic; text-transform: none; color: #111; white-space: nowrap;
+  }
+  .entry__stack::before { content: "|"; color: #777; margin: 0 4.5pt; font-style: normal; }
+  .entry__meta { order: 3; margin-left: 12pt; }
+  .entry__role span { color: #111; font-weight: 700; }
+  .entry__name {
+    border: 0; text-decoration: underline; text-decoration-thickness: 0.5pt;
+    text-underline-offset: 1.5pt; text-decoration-color: #888;
+  }
+  .entry__meta { font-size: 9.5pt; text-transform: none; color: #111; }
+  .entry__sub,
+  .entry__line,
+  .entry__muted { margin-top: 0; font-size: 9.5pt; font-weight: 400; font-style: italic; text-transform: none; color: #111; }
+  #education .entry__line,
+  #education .entry__muted { display: inline; }
+  #education .entry__line:not(:last-child)::after { content: "."; }
+  .entry.is-folded .entry__role,
+  .entry.is-folded .entry__sub,
+  .entry.is-folded .entry__stack { color: #111; }
+
+  .dlist { list-style: disc; margin: 1.5pt 0 0 13pt; }
+  .dlist li { padding-left: 0; margin-bottom: 1pt; line-height: 1.25; color: #111; }
+  .dlist li::before { content: none; }
+  .dlist strong { font-weight: 700; }
+
+  .skills { display: block; border: 0; }
+  .skills > div { padding: 0; margin-bottom: 1pt; border: 0; }
+  .skills dt { display: inline; margin: 0; font-size: 9.5pt; font-weight: 700; text-transform: none; color: #111; }
+  .skills dt::after { content: ": "; }
+  .skills dd { display: inline; font-size: 9.5pt; line-height: 1.25; }
+  .chips li.is-dim,
+  .chips li:not(:last-child)::after { color: #111; }
 }

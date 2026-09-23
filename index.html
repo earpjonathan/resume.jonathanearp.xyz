@@ -4,11 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jonathan Earp — Résumé</title>
-  <meta name="description" content="Résumé of Jonathan Earp — UAS / robot builder, incoming mechanical engineering undergrad. FAA Part 107 pilot; research at LBNL and UPenn's Singh Center." />
+  <meta name="description" content="Résumé of Jonathan Earp — Electrical and Mechanical Engineering student at the University of Edinburgh, FAA Part 107 pilot, and student research assistant at Lawrence Berkeley National Laboratory." />
+  <!-- ?for=hardware etc. are the same page reordered, so they all point here -->
+  <link rel="canonical" href="https://resume.jonathanearp.xyz/" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Jonathan Earp — Résumé" />
-  <meta property="og:description" content="UAS / robot builder, incoming mechanical engineering undergrad. Research at LBNL and UPenn." />
+  <meta property="og:description" content="Electrical and Mechanical Engineering student at the University of Edinburgh. Drones, controls, and research at LBNL and UPenn." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://resume.jonathanearp.xyz" />
   <meta name="twitter:card" content="summary" />
@@ -66,7 +68,7 @@
       <a href="https://jonathanearp.xyz" class="brand">Jonathan Earp <span class="brand__crumb">Résumé</span></a>
       <nav class="topnav" id="topnav">
         <a href="https://jonathanearp.xyz" class="topnav__link">Index ↗</a>
-        <a class="btn-ghost" href="resume.pdf" download>Download PDF ↓</a>
+        <a class="btn-ghost" href="resume.pdf" download="Jonathan_Earp_Resume.pdf" data-pdf>Download PDF ↓</a>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">
           <span class="theme-toggle__dot"></span><span class="theme-toggle__label"></span>
         </button>
@@ -78,31 +80,101 @@
     </div>
   </header>
 
+  <!--
+    HOW THE TAILORING WORKS
+    Every bullet carries data-for="..." naming the focuses it belongs to. Picking
+    a focus (or opening ?for=hardware) shows that focus's summary, reorders the
+    entries and skill groups, and hides bullets that aren't tagged for it. The
+    order lives in LENSES at the top of script.js. Nothing is rewritten except
+    the summary, so every version says only what this page already says.
+
+    Small per-version details (a location, a section title) use
+    data-show-for="key" (shown only in that version; also give it the hidden
+    attribute so it stays out of the no-JS page) or data-hide-for="key".
+    Put these on anything except bullets, which use data-for.
+
+    The PDFs are printed from this page by tools/build-pdfs.sh. Re-run it after
+    editing anything here.
+  -->
+
   <main class="doc">
 
     <!-- HEADER -->
     <header class="cv-head">
       <h1 class="cv-name">Jonathan Earp</h1>
-      <p class="cv-title">UAS / Robot Builder — Incoming Mechanical Engineering Undergrad</p>
+      <p class="cv-title">Electrical and Mechanical Engineering, University of Edinburgh</p>
       <div class="cv-contact">
-        <span>Oakland, CA</span>
-        <a href="tel:+15107086377">(510) 708-6377</a>
+        <span><span data-hide-for="hyped">Oakland, CA · </span>Edinburgh, UK</span>
+        <a href="tel:+15107086377" data-hide-for="hyped">(510) 708-6377</a>
         <a href="mailto:jonathan.earp55@gmail.com">jonathan.earp55@gmail.com</a>
-        <a href="https://jonathanearp.xyz" target="_blank" rel="noopener">jonathanearp.xyz</a>
+        <a href="https://jonathanearp.xyz">jonathanearp.xyz</a>
+        <a class="is-li" href="https://www.linkedin.com/in/jonathan-earp-25905026b/"><span class="on-screen">LinkedIn</span><span class="on-paper">linkedin.com/in/jonathan-earp-25905026b</span></a>
+        <a class="is-gh" href="https://github.com/earpjonathan"><span class="on-screen">GitHub</span><span class="on-paper">github.com/earpjonathan</span></a>
       </div>
       <div class="cv-actions">
-        <a class="btn-cork" href="resume.pdf" download>Download PDF<span>↓</span></a>
-        <span class="cv-tag">FAA Part 107 Remote Pilot</span>
+        <a class="btn-cork" href="resume.pdf" download="Jonathan_Earp_Resume.pdf" data-pdf>Download PDF<span aria-hidden="true">↓</span></a>
+        <span class="cv-tag" data-hide-for="hyped">FAA Part 107 Remote Pilot</span>
+        <span class="cv-tag" data-hide-for="hyped">U.S. Citizen</span>
       </div>
     </header>
 
-    <!-- SUMMARY -->
+    <!-- FOCUS PICKER (needs JS, so it stays hidden without it) -->
+    <section class="lens" aria-labelledby="lens-label">
+      <div class="lens__row">
+        <p class="lens__label" id="lens-label">Tailor to a role</p>
+        <div class="lens__opts" role="group" aria-labelledby="lens-label">
+          <button type="button" class="lens__opt" data-lens="all" aria-pressed="true">Everything</button>
+          <button type="button" class="lens__opt" data-lens="hardware" aria-pressed="false">Hardware &amp; drones</button>
+          <button type="button" class="lens__opt" data-lens="controls" aria-pressed="false">Controls &amp; sensors</button>
+          <button type="button" class="lens__opt" data-lens="software" aria-pressed="false">Software &amp; data</button>
+          <button type="button" class="lens__opt" data-lens="research" aria-pressed="false">Research</button>
+        </div>
+      </div>
+      <div class="lens__status" aria-live="polite">
+        <p class="lens__note" id="lens-note">Pick one to put the most relevant work first and hide the points that don't apply.</p>
+        <div class="lens__tools">
+          <button type="button" class="lens__tool" id="lens-reset" hidden>Show everything</button>
+          <button type="button" class="lens__tool" id="lens-copy" hidden>Copy link to this version</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUMMARY: one per focus, the rest hidden -->
     <section class="cv-summary">
-      <p>
-        FAA Part 107 remote pilot. I build my own drones and fly them, about eight so far across
-        Betaflight and ArduPilot, and I do the powertrain, wiring and tuning myself. At
-        Lawrence Berkeley National Lab I built a stove-mounted camera and air-quality rig for a
-        childhood asthma study, and at UPenn's Singh Center I worked in the Class 100 cleanroom.
+      <p data-lens="all">
+        First-year Electrical and Mechanical Engineering student at the University of Edinburgh
+        and FAA Part 107 remote pilot. I build and fly my own drones, and since 2024 I've worked at
+        Lawrence Berkeley National Laboratory on StoveCam, a camera sensor for a childhood asthma study.
+      </p>
+      <p data-lens="hardware" hidden>
+        Most of my hardware work is drones. I've built eight multirotors from 45&nbsp;mm to 5&nbsp;in,
+        picking the motors, ESCs and props and doing the soldering and integration myself. At LBNL I
+        built the Raspberry Pi camera units that run in people's kitchens, and I captained a VEX
+        team that won State.
+      </p>
+      <p data-lens="controls" hidden>
+        I've tuned PID loops on eight drones and a VEX robot, using flight logs and test runs to decide
+        each change, and I calibrate the GPS, compass, barometer and IMU on every build. On a 3D
+        reconstruction project I worked out an uncalibrated lens's focal length by regressing optical
+        flow against gyro rotation.
+      </p>
+      <p data-lens="software" hidden>
+        I mostly write Python, with some Rust and JavaScript. At LBNL I wrote the three-stage labeling
+        pipeline behind 40,000+ image pairs. On my own I've built a pipeline from drone video to a 3D
+        Gaussian Splatting model, and one that renders TV clips as Desmos animations (4.4M plays).
+      </p>
+      <p data-lens="research" hidden>
+        I've worked on StoveCam at Lawrence Berkeley National Laboratory since 2024, from building the
+        sensor to grading its output by hand against 506 captures. In summer 2025 I did nanofabrication
+        in the Class 100 cleanroom at UPenn's Singh Center.
+      </p>
+      <!-- link-only: ?for=hyped, the Edinburgh technical team application -->
+      <p data-lens="hyped" hidden>
+        First-year Electrical and Mechanical Engineering student. I build and fly my own drones, have
+        worked on a sensor research project at Lawrence Berkeley National Laboratory since 2024, and
+        captained a VEX robotics team to a state title and a Worlds division final. I'm applying to the
+        Electromagnets, Dynamics and Static technical teams. My closest experience is brushless motors
+        and ESCs, IMU data and PID tuning, and building robot mechanisms.
       </p>
     </section>
 
@@ -111,72 +183,97 @@
       <!-- MAIN COLUMN -->
       <div class="cv-main">
 
-        <section>
-          <div class="shead"><span class="shead__no">01</span><span class="shead__title">Experience</span></div>
+        <section class="cv-sec" id="experience" data-sec="exp">
+          <div class="shead"><span class="shead__no">01</span><h2 class="shead__title"><span data-show-for="hyped" hidden>Engineering </span>Experience</h2></div>
 
-          <article class="entry">
+          <article class="entry" data-id="lbnl">
             <div class="entry__head">
-              <h3 class="entry__role">UPenn — Singh Center for Nanotechnology <span>— ESAP Participant</span></h3>
+              <h3 class="entry__role"><a class="entry__name" href="https://research.jonathanearp.xyz">Lawrence Berkeley National Laboratory</a> <span>— Student Research Assistant</span></h3>
+              <span class="entry__meta">Berkeley, CA · Apr 2024 – Present</span>
+            </div>
+            <p class="entry__sub">StoveCam: low-cost camera sensor for an indoor air quality and childhood asthma study</p>
+            <ul class="dlist">
+              <li data-for="hardware controls research hyped">Built a Raspberry Pi 5 unit with RGB and thermal cameras that captures the cooktop every 60&nbsp;s in occupied homes, then reworked the mounts, wiring and capture scripts until it ran reliably across different kitchens.</li>
+              <li data-for="software research hyped">Wrote a three-stage Python labeling pipeline: an on-device brightness gate, a low-cost cooking screen, then Gemini vision for food, method, burner and cookware. 40,000+ RGB/thermal pairs from three homes at $0.018 per analyzed pair.</li>
+              <li data-for="software research hyped">Validated the output against 506 hand-graded pairs: mean score 8.1/10, with zero burner or cooking-method errors. Most failures traced to residual-heat false positives. Abstract submitted to ISES 2026.</li>
+            </ul>
+            <p class="entry__links"><a class="tlink" href="https://research.jonathanearp.xyz">Write-up ↗</a></p>
+          </article>
+
+          <article class="entry" data-id="upenn">
+            <div class="entry__head">
+              <h3 class="entry__role"><a class="entry__name" href="https://research.jonathanearp.xyz/#archive">University of Pennsylvania, Singh Center for Nanotechnology</a> <span>— ESAP Participant</span></h3>
               <span class="entry__meta">Philadelphia, PA · Summer 2025</span>
             </div>
-            <p class="entry__sub">Nanofabrication in the Singh Center cleanroom</p>
             <ul class="dlist">
-              <li>Built an adaptive audio control device with Professor Gyuseok Kim and the graduate TAs, and took it from a first prototype to a working demo.</li>
-              <li>Ran the full fabrication loop in the Class 100 cleanroom: photolithography on silicon, microfluidic devices, CdSe quantum dot synthesis, and SEM and AFM imaging of what came out.</li>
+              <li data-for="hardware research hyped">Class 100 (ISO 5) cleanroom: photolithography, microfluidics, CdSe quantum dot synthesis, SEM and AFM imaging.</li>
+              <li data-for="hardware research hyped">Built an adaptive audio control device with Prof. Gyuseok Kim and graduate TAs, from first prototype to working demo.</li>
             </ul>
-          </article>
-
-          <article class="entry">
-            <div class="entry__head">
-              <h3 class="entry__role">Lawrence Berkeley National Laboratory <span>— Student Research Assistant</span></h3>
-              <span class="entry__meta">Berkeley, CA · Apr 2024–Present</span>
-            </div>
-            <p class="entry__sub">Indoor air quality &amp; childhood asthma study</p>
-            <ul class="dlist">
-              <li>Built a stove-mounted camera and air-quality sensor rig that photographs the cooktop every minute in occupied homes.</li>
-              <li>Reworked the mounts, wiring and capture scripts until the units held up in kitchens with different lighting and layouts.</li>
-              <li>Wrote the three-stage labelling pipeline that pairs each image with its sensor readings; over 40,000 pairs collected across three homes so far.</li>
-            </ul>
-          </article>
-
-          <article class="entry">
-            <div class="entry__head">
-              <h3 class="entry__role">The Head-Royce School <span>— Technology Office Assistant</span></h3>
-              <span class="entry__meta">Oakland, CA · Jun 2023 – Present</span>
-            </div>
-            <p class="entry__sub">IT + hardware support</p>
-            <ul class="dlist">
-              <li>Fixed student and staff laptops, displays and peripherals, and wrote the fixes down so the next person didn't have to work them out again.</li>
-              <li>Set up classroom and event AV, and covered the desk during events when something broke mid-session.</li>
-            </ul>
+            <p class="entry__links"><a class="tlink" href="https://research.jonathanearp.xyz/#archive">Photos and notes ↗</a></p>
           </article>
         </section>
 
-        <section>
-          <div class="shead"><span class="shead__no">02</span><span class="shead__title">Projects</span></div>
+        <section class="cv-sec" id="projects" data-sec="proj">
+          <div class="shead"><span class="shead__no">02</span><h2 class="shead__title">Projects<span data-show-for="hyped" hidden> and Teams</span></h2></div>
 
-          <article class="entry">
+          <article class="entry" data-id="fpv">
             <div class="entry__head">
-              <h3 class="entry__role">FPV / UAS Builds <span>— Personal Projects</span></h3>
-              <span class="entry__meta">Ongoing</span>
+              <h3 class="entry__role"><a class="entry__name" href="https://fpv.jonathanearp.xyz">FPV and UAS Builds</a> <span>— Personal</span></h3>
+              <span class="entry__meta">2023 – Present</span>
+              <span class="entry__stack">Betaflight, ArduPilot, ExpressLRS</span>
             </div>
             <ul class="dlist">
-              <li>Built and fly about eight drones, 45&nbsp;mm to 5&nbsp;in, on Betaflight and ArduPilot. Powertrain, flight-controller stack and payload wiring are all mine.</li>
-              <li>Set up and calibrate GPS, compass, barometer and IMU on each build, then tune the PIDs off how it flies and what the logs say.</li>
-              <li>Over 400 flight hours on FPV and camera drones. The repairs and rebuilds behind those hours are mine too.</li>
+              <li data-for="hardware hyped">Built 8 multirotors from 45&nbsp;mm to 5&nbsp;in. Selected the motors, STM32-based ESCs and props, then soldered and integrated the flight controller, receiver, GPS and video system on each.</li>
+              <li data-for="hardware controls hyped">Calibrate GPS, compass, barometer and IMU on every build, and tune PID loops over repeated test flights using flight logs.</li>
+              <li data-for="hardware hyped">400+ flight hours, including car-chase, real estate and music video shoots.<span data-show-for="hyped" hidden> FAA Part 107 certified (US commercial drone licence).</span> All crash repairs and rebuilds done myself.</li>
+            </ul>
+            <p class="entry__links"><a class="tlink" href="https://fpv.jonathanearp.xyz">Reel and gallery ↗</a></p>
+          </article>
+
+          <article class="entry" data-id="splat">
+            <div class="entry__head">
+              <h3 class="entry__role"><a class="entry__name" href="https://projects.jonathanearp.xyz/splat/">3D Reconstruction from FPV Flight Data</a> <span>— S.P.L.O.O.G.E</span></h3>
+              <span class="entry__meta">Aug 2026</span>
+              <span class="entry__stack">Python, COLMAP, Rust, WebGL</span>
+            </div>
+            <ul class="dlist">
+              <li data-for="software controls research hyped">Built a pipeline from raw DJI O4 Pro video and gyro telemetry to one 3D Gaussian Splatting model of two flights six days apart: 7,470 of 7,471 frames registered at 0.82&nbsp;px mean reprojection error.</li>
+              <li data-for="software controls research hyped">Estimated the uncalibrated lens focal length by regressing optical flow against gyro rotation (R² = 0.967), and cut video-to-render misalignment from 72.3&nbsp;px to 0.89&nbsp;px by undistorting the footage.</li>
+              <li data-for="software research">Confirmed 13,482 verified image matches linked the two sites before committing to an 18-hour mapping run.</li>
+              <li data-for="software research hyped">Traced a rendering defect to the viewer's near-plane cull after measuring four other fixes, including a depth-distortion loss I implemented in Rust. Holes fell from 51.2% to 4.4%, with no regressions across 56 test poses.</li>
+            </ul>
+            <p class="entry__links">
+              <a class="tlink" href="https://projects.jonathanearp.xyz/splat/">Write-up ↗</a>
+              <a class="tlink" href="https://github.com/earpjonathan/S.P.L.O.O.G.E">Code ↗</a>
+            </p>
+          </article>
+
+          <article class="entry" data-id="vex">
+            <div class="entry__head">
+              <h3 class="entry__role">Head-Royce VEX Robotics <span>— Team Captain</span></h3>
+              <span class="entry__meta">Oakland, CA · 2022 – 2026</span>
+            </div>
+            <ul class="dlist">
+              <li data-for="hardware controls hyped">Designed and built robot mechanisms, then tuned PID control with the programmers over repeated test runs.</li>
+              <li data-for="hyped" class="print-trim">Kept the team building through a workspace move with a set schedule and clear ownership of each subsystem.</li>
+              <li data-for="hardware controls hyped">State Champion, Worlds Division Finalist, 2×&nbsp;Tournament Champion, 2×&nbsp;Excellence, 3×&nbsp;Build, 2×&nbsp;Amaze, 1×&nbsp;Design.</li>
             </ul>
           </article>
 
-          <article class="entry">
+          <article class="entry" data-id="peter">
             <div class="entry__head">
-              <h3 class="entry__role">Head-Royce VEX Robotics <span>— Captain</span></h3>
-              <span class="entry__meta">Oakland, CA</span>
+              <h3 class="entry__role"><a class="entry__name" href="https://projects.jonathanearp.xyz/desmos/">Automated Video Rendering Pipeline</a> <span>— P.E.T.E.R</span></h3>
+              <span class="entry__meta">2026</span>
+              <span class="entry__stack">Python, OpenCV, Playwright, ffmpeg</span>
             </div>
             <ul class="dlist">
-              <li>Designed and built the mechanisms, then worked with the programmers to tune them with PID and repeated test runs.</li>
-              <li>Kept the team building through a workspace move by setting a schedule and making it obvious who owned what.</li>
-              <li>Results: State Champion; VEX Worlds Division Finalist; 2× Excellence, 3× Build, 2× Amaze, 1× Design, 2× Tournament Champion.</li>
+              <li data-for="software hyped">Wrote a 4,100-line Python pipeline that renders video clips as Desmos equations and uploads them. 4.4M plays.</li>
+              <li data-for="software hyped">Profiled rendering (94% capture, 4% tracing) and parallelized capture for a 1.55× speedup, then found a timing bug corrupting 39 of 40 frames and fixed it by sweeping the wait threshold until output converged.</li>
             </ul>
+            <p class="entry__links">
+              <a class="tlink" href="https://projects.jonathanearp.xyz/desmos/">Write-up ↗</a>
+              <a class="tlink" href="https://github.com/earpjonathan/P.E.T.E.R">Code ↗</a>
+            </p>
           </article>
         </section>
 
@@ -185,31 +282,85 @@
       <!-- SIDE COLUMN -->
       <aside class="cv-side">
 
-        <section>
-          <div class="shead"><span class="shead__no">03</span><span class="shead__title">Education</span></div>
+        <section class="cv-sec" id="education">
+          <div class="shead"><span class="shead__no">03</span><h2 class="shead__title">Education</h2></div>
           <div class="entry">
-            <h3 class="entry__role">The Head-Royce School</h3>
-            <span class="entry__meta">Oakland, CA · Class of 2026</span>
-            <p class="cv-gpa">GPA 3.80 unweighted · 4.38 weighted</p>
-            <p class="entry__muted">Honors Calculus, Honors Advanced Physics, Honors Advanced Chemistry, Honors Data Science</p>
+            <div class="entry__head">
+              <h3 class="entry__role">University of Edinburgh</h3>
+              <span class="entry__meta">Edinburgh, UK · 2026 – 2031</span>
+            </div>
+            <p class="entry__line">MEng Electrical and Mechanical Engineering, Year 1</p>
+          </div>
+          <div class="entry">
+            <div class="entry__head">
+              <h3 class="entry__role">The Head-Royce School</h3>
+              <span class="entry__meta">Oakland, CA · Jun 2026</span>
+            </div>
+            <p class="entry__line" data-hide-for="hyped">GPA 3.80 unweighted, 4.38 weighted</p>
+            <p class="entry__line" data-show-for="hyped" hidden>US high school diploma. GPA 3.80/4.00 unweighted</p>
+            <p class="entry__muted"><span data-hide-for="hyped">Honors</span><span data-show-for="hyped" hidden>Honours</span> Calculus, <span data-hide-for="hyped">Advanced </span>Physics, <span data-hide-for="hyped">Advanced </span>Chemistry, Data Science</p>
           </div>
         </section>
 
-        <section>
-          <div class="shead"><span class="shead__no">04</span><span class="shead__title">Technical Skills</span></div>
+        <section class="cv-sec" id="skills">
+          <div class="shead"><span class="shead__no">04</span><h2 class="shead__title">Skills</h2></div>
           <dl class="skills">
-            <div><dt>UAS / Avionics</dt><dd>Betaflight, ArduPilot; ExpressLRS; analog + DJI video; GPS / compass / barometer / IMU setup</dd></div>
-            <div><dt>Controls / Data</dt><dd>PID tuning; flight-log review; hardware troubleshooting</dd></div>
-            <div><dt>Mechanical / CAD</dt><dd>Onshape, Fusion 360; 3D printing; CNC + laser cutting; shop tools (bandsaw, drill press)</dd></div>
-            <div><dt>Programming</dt><dd>Python (scripting + data), JavaScript / CSS; light web tools and dashboards</dd></div>
+            <div data-id="electrical">
+              <dt>Electrical &amp; avionics</dt>
+              <dd><ul class="chips">
+                <li data-for="hardware hyped">Brushless motors</li>
+                <li data-for="hardware hyped">STM32 ESCs</li>
+                <li data-for="hardware hyped">soldering</li>
+                <li data-for="hardware controls hyped">Betaflight</li>
+                <li data-for="hardware controls hyped">ArduPilot</li>
+                <li data-for="hardware hyped">ExpressLRS</li>
+                <li data-for="hardware hyped">analog and DJI video</li>
+              </ul></dd>
+            </div>
+            <div data-id="controls">
+              <dt>Controls &amp; sensors</dt>
+              <dd><ul class="chips">
+                <li data-for="controls hardware hyped">PID tuning</li>
+                <li data-for="controls hyped">IMU and gyro data</li>
+                <li data-for="controls software hyped">quaternion orientation</li>
+                <li data-for="controls hardware research hyped">sensor calibration</li>
+                <li data-for="controls software hyped">flight-log analysis</li>
+              </ul></dd>
+            </div>
+            <div data-id="cad">
+              <dt>CAD &amp; fabrication</dt>
+              <dd><ul class="chips">
+                <li data-for="hardware hyped">Onshape</li>
+                <li data-for="hardware hyped">Fusion 360</li>
+                <li data-for="hardware hyped">3D printing</li>
+                <li data-for="hardware hyped">CNC</li>
+                <li data-for="hardware hyped">laser cutting</li>
+                <li data-for="hardware hyped">bandsaw</li>
+                <li data-for="hardware hyped">drill press</li>
+                <li data-for="hardware research hyped">photolithography</li>
+              </ul></dd>
+            </div>
+            <div data-id="code">
+              <dt>Programming</dt>
+              <dd><ul class="chips">
+                <li data-for="software research controls hyped">Python (NumPy, OpenCV, Playwright)</li>
+                <li data-for="software">Rust</li>
+                <li data-for="software research">COLMAP</li>
+                <li data-for="software">JavaScript</li>
+                <li data-for="software">WebGL</li>
+                <li data-for="hardware controls hyped">Arduino</li>
+                <li data-for="hardware software controls hyped">Raspberry Pi / Linux</li>
+                <li data-for="software">Git</li>
+              </ul></dd>
+            </div>
           </dl>
         </section>
 
-        <section>
-          <div class="shead"><span class="shead__no">05</span><span class="shead__title">Leadership</span></div>
+        <section class="cv-sec" id="leadership">
+          <div class="shead"><span class="shead__no">05</span><h2 class="shead__title">Leadership<span data-show-for="hyped" hidden> and Outreach</span></h2></div>
           <ul class="dlist">
-            <li><strong>Medical Advocacy — President.</strong> Ran the club at a 1,000-student school. Organised a blood drive that brought in 120 donors, and set up a partnership with a local hospital.</li>
-            <li><strong>Boy Scouts — Senior Patrol Leader, Eagle Project.</strong> Taught a month-long robotics class at an elementary school and left the curriculum behind so someone else could run it again.</li>
+            <li><strong>Medical Advocacy, President.</strong> Ran a blood drive that brought in 120 donors, and set up a partnership with a local hospital.</li>
+            <li><strong>Eagle Scout, Senior Patrol Leader.</strong> Taught a month-long robotics class at an elementary school for my Eagle project<span class="print-trim">, and left the curriculum behind so someone else could run it again</span>.</li>
           </ul>
         </section>
 
